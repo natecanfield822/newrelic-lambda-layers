@@ -146,7 +146,7 @@ function build-python310-arm64 {
     echo "Building New Relic layer for python3.10 (arm64)"
     rm -rf $BUILD_DIR $PY310_DIST_ARM64
     mkdir -p $DIST_DIR
-    pip install --no-cache-dir -qU newrelic newrelic-lambda -t $BUILD_DIR/lib/python3.10/site-packages
+    pip3 install --no-cache-dir -qU newrelic newrelic-lambda -t $BUILD_DIR/lib/python3.10/site-packages
     cp newrelic_lambda_wrapper.py $BUILD_DIR/lib/python3.10/site-packages/newrelic_lambda_wrapper.py
     find $BUILD_DIR -name '__pycache__' -exec rm -rf {} +
     download_extension arm64
@@ -159,7 +159,7 @@ function build-python310-x86 {
     echo "Building New Relic layer for python3.10 (x86_64)"
     rm -rf $BUILD_DIR $PY310_DIST_X86_64
     mkdir -p $DIST_DIR
-    pip install --no-cache-dir -qU newrelic newrelic-lambda -t $BUILD_DIR/lib/python3.10/site-packages
+    pip3 install --no-cache-dir -qU "newrelic @ git+https://github.com/newrelic/newrelic-python-agent.git@improved-record-ml-event" newrelic-lambda -t $BUILD_DIR/lib/python3.10/site-packages
     cp newrelic_lambda_wrapper.py $BUILD_DIR/lib/python3.10/site-packages/newrelic_lambda_wrapper.py
     find $BUILD_DIR -name '__pycache__' -exec rm -rf {} +
     download_extension x86_64
@@ -256,10 +256,7 @@ case "$1" in
         publish-python39-x86
         ;;
     "python3.10")
-        build-python310-arm64
-        publish-python310-arm64
         build-python310-x86
-        publish-python310-x86
         ;;
     "python3.11")
         build-python311-arm64
