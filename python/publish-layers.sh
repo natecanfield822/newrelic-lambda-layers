@@ -159,7 +159,7 @@ function build-python310-x86 {
     echo "Building New Relic layer for python3.10 (x86_64)"
     rm -rf $BUILD_DIR $PY310_DIST_X86_64
     mkdir -p $DIST_DIR
-    pip3 install --no-cache-dir -qU "newrelic @ git+https://github.com/newrelic/newrelic-python-agent.git@improved-record-ml-event" newrelic-lambda -t $BUILD_DIR/lib/python3.10/site-packages
+    pip3 install --no-cache-dir -qU "newrelic @ git+https://github.com/newrelic/newrelic-python-agent.git@ai-supportability-metrics" newrelic-lambda -t $BUILD_DIR/lib/python3.10/site-packages
     cp newrelic_lambda_wrapper.py $BUILD_DIR/lib/python3.10/site-packages/newrelic_lambda_wrapper.py
     find $BUILD_DIR -name '__pycache__' -exec rm -rf {} +
     download_extension x86_64
